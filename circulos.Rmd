@@ -1,0 +1,31 @@
+---
+title: "Figures"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+```
+
+```{r}
+n <- 10000
+x<- runif(n, min=-1, max=1)
+y<- runif(n, min = -1, max=1)
+output <-ifelse(x^2 + y^2 <=1,1,0)
+
+```
+
+```{r}
+circle <- data.frame(x=x, y=y, output=output)
+ggplot(data=circle)+
+  geom_point(aes(x=x, y=y, color=as.factor(output)))+
+               lims(x=c(-1,1),y= c(-1,1))
+```
+
+```{r}
+ggplot(data=circle)+
+  geom_point(aes(x=x, y=y, color=as.factor(output)))+
+  coord_fixed(x=c(-1,1),y= c(-1,1))
+```
+
+
